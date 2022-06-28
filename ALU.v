@@ -1,38 +1,38 @@
 module ALU(
-    input  [31:0] A,
-    input  [31:0] B,
-    input  [1:0] Op,
-    output [31:0] C
+    input  [31:0] a,
+    input  [31:0] b,
+    input  [1:0] op,
+    output [31:0] c
 );
 
-    always @(A, B, Op) begin
-        if(Op[1] == 0 && Op[0] == 1) begin
+    always @(a, b, op) begin
+        if(op[1] == 0 && op[0] == 1) begin
             subFPGA sF(
-                .A(A),
-                .B(B),
-                .C(C)
+                .a(a),
+                .b(b),
+                .c(c)
             );
         end
 
-        else if(Op[1] == 0 && Op[0] == 0) begin
+        else if(op[1] == 0 && op[0] == 0) begin
             addFPGA aF(
-                .A(A),
-                .B(B),
-                .C(C)
+                .a(a),
+                .b(b),
+                .c(c)
             );
         end
-        else if(Op[1] == 1 && Op[0] == 1) begin
+        else if(op[1] == 1 && op[0] == 1) begin
             divFPGA dF(
-                .A(A),
-                .B(B),
-                .C(C)
+                .a(a),
+                .b(b),
+                .c(c)
             );
         end
-        else if(Op[1] == 1 && Op[0] == 0) begin
+        else if(op[1] == 1 && op[0] == 0) begin
             mulFPGA mF(
-                .A(A),
-                .B(B),
-                .C(C)
+                .a(a),
+                .b(b),
+                .c(c)
             );
         end
     end
